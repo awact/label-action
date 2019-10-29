@@ -35,16 +35,10 @@ action=$(jq --raw-output .action "$GITHUB_EVENT_PATH")
 state=$(jq --raw-output .review.state "$GITHUB_EVENT_PATH")
 number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
-label() {
-    echo "Labeling pull request"
-
-    curl -sSL \
-        -H "${AUTH_HEADER}" \
-        -H "${API_HEADER}" \
-        -X POST \
-        -H "Content-Type: application/json" \
-        -d "{\"labels\":[\"${addLabel}\"]}" \
-        "${URI}/repos/${GITHUB_REPOSITORY}/issues/${number}/labels"
-}
-
-label
+curl -sSL \
+    -H "${AUTH_HEADER}" \
+    -H "${API_HEADER}" \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d "{\"labels\":[\"${addLabel}\"]}" \
+    "${URI}/repos/${GITHUB_REPOSITORY}/issues/${number}/labels"
