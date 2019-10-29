@@ -2,6 +2,7 @@ FROM debian:9.6-slim
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    ca-certificates \
     curl \
     jq \
     && apt-get clean \
