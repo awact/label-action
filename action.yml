@@ -1,0 +1,15 @@
+name: "Label Github Action"
+description: "Github Action to Label a Particular PR"
+branding:
+  color: "yellow"
+  icon: "aperture"
+inputs:
+  ADD_LABEL:
+    description: "Label to add to PR"
+    required: true
+    default: null
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.ADD_LABEL }}
